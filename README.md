@@ -1,14 +1,23 @@
 Powerline theme for oh-my-zsh
 =============================
 
-oh-my-zsh Powerline style Theme
+The Powerline style prompt for oh-my-zsh
 
+https://raw.github.com/KuoE0/Powerline-oh-my-zsh-theme/master/preview.png
 Set Up
 ------
 
 1. Clone the repository.
 
+	```
+	$ git clone git://github.com/KuoE0/Powerline-oh-my-zsh-theme.git
+	```
+
 2. Create un symlink of **powerline.zsh-theme** in **.oh-my-zsh/themes/**.
+	
+	```
+	$ ln -s $PWD/powerline.zsh-theme ~/.oh-my-zsh/themes
+	```
 
 2. Configure the theme in your **.zshrc** file :
 
@@ -16,19 +25,14 @@ Set Up
     ZSH_THEME="powerline"
     ```
 
-More options
-------------
-
-By default, at the right of the powerline are displayed the date and the time.
-If you don't want date or time, you can choose what you want to display in your **.zshrc** file :
-
-```
-POWERLINE_RIGHT_A="date replacement"
-POWERLINE_RIGHT_B="time replacement"
-```
-
 Requirements
 ------------
 
 * Vim Powerline patched font : See [Powerline for vim](https://github.com/Lokaltog/vim-powerline.git) for more info.
 * Z shell (zsh) : See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
+
+Preview
+-------
+
+![powerline prompt](https://raw.github.com/KuoE0/Powerline-oh-my-zsh-theme/master/preview.png)
+

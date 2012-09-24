@@ -1,12 +1,7 @@
-oh-my-zsh-powerline-theme
-=========================
+Powerline theme for oh-my-zsh
+=============================
 
 oh-my-zsh Powerline style Theme
-
-Preview
--------
-
-![Preview](http://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme/raw/master/preview.png)
 
 Set Up
 ------

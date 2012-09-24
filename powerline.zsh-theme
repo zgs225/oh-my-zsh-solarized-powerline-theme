@@ -15,6 +15,8 @@ FG_COLOR_CYAN=%{$fg[cyan]%}
 FG_COLOR_WHITE=%{$fg[white]%}
 
 FG_COLOR_228=%F{228}
+# reset color
+RESET=%{$reset_color%}
 
 
 GIT_DIRTY_COLOR=%F{196}
@@ -36,8 +38,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 ZSH_TIME=%T
 
 # username
-PROMPT="
-$FG_COLOR_BLACK$BG_COLOR_GREEN %n"
+PROMPT="$FG_COLOR_BLACK$BG_COLOR_GREEN %n"
 
 # hostname
 PROMPT=$PROMPT"$FG_COLOR_WHITE at$FG_COLOR_228 %m "
@@ -51,14 +52,16 @@ PROMPT=$PROMPT"$FG_COLOR_WHITE$BG_COLOR_BLUE $ZSH_TIME "
 # blue arrow
 PROMPT=$PROMPT"$FG_COLOR_BLUE$BG_COLOR_CYAN"$'\u2b80'
 
-# current directory
-PROMPT=$PROMPT"$FG_COLOR_228$BG_COLOR_CYAN %1~"$'$(git_prompt_info)'" "
+# current directory (%E hightline all line to end)
+PROMPT=$PROMPT"$FG_COLOR_228$BG_COLOR_CYAN  %1~"$'$(git_prompt_info)'" %E
+  "
 
 # cyan arrow
 PROMPT=$PROMPT"$FG_COLOR_CYAN$BG_COLOR_8"$'\u2b80'
 
 # resrt
-PROMPT=$PROMPT"%{$reset_color%} "
+PROMPT=$PROMPT"$RESET "
 
-#RPROMPT=""
+local return_code="%(?..$FG_COLOR_RED%? ↵$RESET)"
+RPROMPT="${return_code}"
 

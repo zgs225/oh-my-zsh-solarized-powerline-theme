@@ -1,20 +1,21 @@
-# FreeAgent puts the powerline style in zsh !
+# color
+BG_COLOR_BLACK=%{$bg[black]%}
+BG_COLOR_BLUE=%{$bg[blue]%}
+BG_COLOR_GREEN=%{$bg[green]%}
+BG_COLOR_CYAN=%{$bg[cyan]%}
 
-if [ "$POWERLINE_RIGHT_B" = "" ]; then
-  POWERLINE_RIGHT_B=%D{%H:%M}
-fi
+BG_COLOR_8=%K{8}
 
-if [ "$POWERLINE_RIGHT_A" = "" ]; then
-  POWERLINE_RIGHT_A=%D{%m-%d}
-fi
+FG_COLOR_BLACK=%{$fg[black]%}
+FG_COLOR_RED=%{$fg[red]%}
+FG_COLOR_GREEN=%{$fg[green]%}
+FG_COLOR_BLUE=%{$fg[blue]%}
+FG_COLOR_YELLOW=%{$fg[yellow]%}
+FG_COLOR_CYAN=%{$fg[cyan]%}
+FG_COLOR_WHITE=%{$fg[white]%}
 
-POWERLINE_COLOR_BG_GRAY=%K{240}
-POWERLINE_COLOR_BG_LIGHT_GRAY=%K{240}
-POWERLINE_COLOR_BG_WHITE=%K{255}
+FG_COLOR_228=%F{228}
 
-POWERLINE_COLOR_FG_GRAY=%F{240}
-POWERLINE_COLOR_FG_LIGHT_GRAY=%F{240}
-POWERLINE_COLOR_FG_WHITE=%F{255}
 
 GIT_DIRTY_COLOR=%F{196}
 GIT_CLEAN_COLOR=%F{118}
@@ -32,7 +33,33 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%F{220]➜%f"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
-PROMPT="
-%K{green}%F{black} %n %k%f%F{green}%K{blue}"$'\u2b80'"%k%f%F{white}%K{blue} %1~"$'$(git_prompt_info)'" %k%f%F{blue}"$'\u2b80'"%f "
+ZSH_DATE=%w
+ZSH_TIME=%T
 
-RPROMPT=$POWERLINE_COLOR_FG_WHITE$'\u2b82'"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY$POWERLINE_RIGHT_B "$'\u2b82'"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE $POWERLINE_RIGHT_A %f%k"
+# username
+PROMPT="
+$FG_COLOR_BLACK$BG_COLOR_GREEN %n"
+
+# hostname
+PROMPT=$PROMPT"$FG_COLOR_WHITE at$FG_COLOR_228 %m "
+
+# green arrow
+PROMPT=$PROMPT"$FG_COLOR_GREEN$BG_COLOR_BLUE"$'\u2b80'
+
+# datetime
+PROMPT=$PROMPT"$FG_COLOR_WHITE$BG_COLOR_BLUE $ZSH_DATE $ZSH_TIME "
+
+# blue arrow
+PROMPT=$PROMPT"$FG_COLOR_BLUE$BG_COLOR_CYAN"$'\u2b80'
+
+# current directory
+PROMPT=$PROMPT"$FG_COLOR_228$BG_COLOR_CYAN %1~"$'$(git_prompt_info)'" "
+
+# cyan arrow
+PROMPT=$PROMPT"$FG_COLOR_CYAN$BG_COLOR_8"$'\u2b80'
+
+# resrt
+PROMPT=$PROMPT"%{$reset_color%} "
+
+#RPROMPT=""
+

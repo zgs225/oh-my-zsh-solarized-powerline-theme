@@ -25,6 +25,21 @@ Set Up
     ZSH_THEME="powerline"
     ```
 
+Test
+----
+
+Use up new setting:
+	
+	```
+	source test.sh
+	```
+
+Restore old setting:
+	
+	```
+	source restore.sh
+	```
+
 Requirements
 ------------
 

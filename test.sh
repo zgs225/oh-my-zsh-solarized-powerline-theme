@@ -2,11 +2,9 @@
 
 theme_loc=~/.oh-my-zsh/themes/powerline.zsh-theme
 # get current path
-old_path="$(greadlink $theme_loc)"
-echo $old_path
+old_path="$(readlink $theme_loc)"
 # delete
 rm $theme_loc
 # link new version
 ln -s $PWD/powerline.zsh-theme $theme_loc
-echo "$(greadlink $theme_loc)"
 

@@ -30,17 +30,13 @@ Test
 
 Use up new setting:
 	
-	```
 	source test.sh
 	source ~/.zshrc
-	```
 
 Restore old setting:
 	
-	```
 	source restore.sh
 	source ~/.zshrc
-	```
 
 Requirements
 ------------

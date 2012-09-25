@@ -53,7 +53,7 @@ PROMPT=$PROMPT"$FG_COLOR_WHITE$BG_COLOR_BLUE $ZSH_TIME "
 PROMPT=$PROMPT"$FG_COLOR_BLUE$BG_COLOR_CYAN"$'\u2b80'
 
 # current directory (%E hightline all line to end)
-PROMPT=$PROMPT"$FG_COLOR_228$BG_COLOR_CYAN  %1~"$'$(git_prompt_info)'" %E
+PROMPT=$PROMPT"$FG_COLOR_228$BG_COLOR_CYAN  %2~"$'$(git_prompt_info)'" %E
   "
 
 # cyan arrow

@@ -49,3 +49,9 @@ Preview
 
 ![powerline prompt](https://raw.github.com/KuoE0/Powerline-oh-my-zsh-theme/master/preview.png)
 
+
+Bugs
+---------
+
+- In screen/tmux, the '%E' work not correctly. (won't hightlight to end)
+

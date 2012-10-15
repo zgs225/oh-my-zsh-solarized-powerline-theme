@@ -3,7 +3,6 @@ Powerline theme for oh-my-zsh
 
 The Powerline style prompt for oh-my-zsh
 
-https://raw.github.com/KuoE0/Powerline-oh-my-zsh-theme/master/preview.png
 Set Up
 ------
 
@@ -13,7 +12,7 @@ Set Up
 	$ git clone git://github.com/KuoE0/Powerline-oh-my-zsh-theme.git
 	```
 
-2. Create un symlink of **powerline.zsh-theme** in **.oh-my-zsh/themes/**.
+2. Create un symlink of powerline.zsh-theme in .oh-my-zsh/themes/.
 	
 	```
 	$ ln -s $PWD/powerline.zsh-theme ~/.oh-my-zsh/themes
@@ -28,15 +27,15 @@ Set Up
 Test
 ----
 
-Use up new setting:
+**Use up new setting:**
 	
-	source test.sh
-	source ~/.zshrc
+	$ source test.sh
+	$ source ~/.zshrc
 
-Restore old setting:
+**Restore old setting:**
 	
-	source restore.sh
-	source ~/.zshrc
+	$ source restore.sh
+	$ source ~/.zshrc
 
 Requirements
 ------------

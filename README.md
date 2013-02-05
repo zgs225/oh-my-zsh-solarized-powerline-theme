@@ -43,8 +43,7 @@ Requirements
 * Vim Powerline patched font : See [Powerline for vim](https://github.com/Lokaltog/vim-powerline.git) for more info.
 * Z shell (zsh) : See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
 
-Monaco Patch
-============
+### Monaco Patch
 
 [Monaco-Powerline.otf](https://gist.github.com/baopham/1838072)
 

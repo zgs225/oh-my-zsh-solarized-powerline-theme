@@ -9,19 +9,19 @@ Set Up
 1. Clone the repository.
 
 	```
-	$ git clone git://github.com/KuoE0/Powerline-oh-my-zsh-theme.git
+	$ git clone https://github.com/KuoE0/oh-my-zsh-solarized-powerline-theme.git
 	```
 
 2. Create un symlink of powerline.zsh-theme in .oh-my-zsh/themes/.
 	
 	```
-	$ ln -s $PWD/powerline.zsh-theme ~/.oh-my-zsh/themes
+	$ ln -s $PWD/solarized-powerline.zsh-theme ~/.oh-my-zsh/themes
 	```
 
 2. Configure the theme in your **.zshrc** file :
 
     ```
-    ZSH_THEME="powerline"
+    ZSH_THEME="solarized-powerline"
     ```
 
 Test

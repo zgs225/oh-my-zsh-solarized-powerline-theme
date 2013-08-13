@@ -1,3 +1,9 @@
+
+# OS detection
+if [ -n "${OS+x}" ]; then
+	OS=$(uname)
+fi
+
 # color
 BG_COLOR_BLACK=%{$bg[black]%}
 BG_COLOR_BLUE=%{$bg[blue]%}
@@ -88,8 +94,14 @@ PROMPT=$PROMPT"$FG_COLOR_7$BG_COLOR_10 $ZSH_TIME "
 
 PROMPT=$PROMPT"$FG_COLOR_10$BG_COLOR_0"$'\u2b80'
 
+if [ $OS = "Darwin" ]; then
+	LOGO=""
+eles
+	LOGO="🐧"
+fi
+
 # current directory (%E hightline all line to end)
-PROMPT=$PROMPT"$FG_COLOR_15$BG_COLOR_0  %2~"$'$(git_prompt_info)'" %E
+PROMPT=$PROMPT"$FG_COLOR_15$BG_COLOR_0 $LOGO %2~"$'$(git_prompt_info)'" %E
   "
 
 PROMPT=$PROMPT"$FG_COLOR_0$BG_COLOR_8"$'\u2b80'

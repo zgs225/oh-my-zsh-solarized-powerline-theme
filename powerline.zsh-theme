@@ -77,7 +77,9 @@ PROMPT="
 $FG_COLOR_4$BG_COLOR_7 %n"
 
 # hostname
-PROMPT=$PROMPT"$FG_COLOR_2 at$FG_COLOR_13 %m "
+IP=`curl -s http://ipecho.net/plain || echo -n "%m"`
+
+PROMPT=$PROMPT"$FG_COLOR_2 at$FG_COLOR_13 $IP "
 
 PROMPT=$PROMPT"$FG_COLOR_7$BG_COLOR_10"$'\u2b80'
 

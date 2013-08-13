@@ -83,7 +83,15 @@ PROMPT="
 $FG_COLOR_4$BG_COLOR_7 %n"
 
 # hostname
-IP=`curl -s http://ipecho.net/plain || echo -n "%m"`
+IP=`curl -s http://ipecho.net/plain`
+
+if [ -n "${IP+x}" ]; then
+	# replace dot by dash
+	IP=`echo -n $IP | sed "s/\./-/g"`
+else
+	# no network connection, use hostname
+	IP="%m"
+fi
 
 PROMPT=$PROMPT"$FG_COLOR_2 at$FG_COLOR_13 $IP "
 
@@ -96,7 +104,7 @@ PROMPT=$PROMPT"$FG_COLOR_10$BG_COLOR_0"$'\u2b80'
 
 if [ $OS = "Darwin" ]; then
 	LOGO=""
-eles
+else
 	LOGO="🐧"
 fi
 

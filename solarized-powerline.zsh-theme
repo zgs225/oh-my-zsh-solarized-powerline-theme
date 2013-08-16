@@ -85,7 +85,7 @@ $FG_COLOR_4$BG_COLOR_7 %n"
 # hostname
 IP=`curl -s http://ipecho.net/plain`
 
-if [ -n "${IP+x}" ]; then
+if [ ! "$IP" = "" ]; then
 	# replace dot by dash
 	IP=`echo -n $IP | sed "s/\./-/g"`
 else

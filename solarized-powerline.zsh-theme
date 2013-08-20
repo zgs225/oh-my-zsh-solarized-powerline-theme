@@ -83,7 +83,7 @@ PROMPT="
 $FG_COLOR_4$BG_COLOR_7 %n"
 
 # hostname
-IP=`curl -s --max-time 2 http://ifconfig.me`
+IP=`curl -s --max-time 2 http://ipecho.net/plain`
 
 if [ ! "$IP" = "" ]; then
 	# replace dot by dash

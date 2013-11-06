@@ -83,14 +83,14 @@ PROMPT="
 $FG_COLOR_4$BG_COLOR_7 %n"
 
 # hostname
-IP=`curl -s --max-time 2 http://ipecho.net/plain`
+IP=`curl -si --max-time 2 http://ipecho.net/plain`
 
-if [ ! "$IP" = "" ]; then
-	# replace dot by dash
-	IP=`echo -n $IP | sed "s/\./-/g"`
-else
+if [ "$(echo $IP | grep 200)" = "" ]; then
 	# no network connection, use hostname
 	IP="%m"
+else
+	# replace dot by dash
+	IP=`echo -n $IP | tail -n 1 | sed "s/\./-/g"`
 fi
 
 PROMPT=$PROMPT"$FG_COLOR_2 at$FG_COLOR_13 $IP "

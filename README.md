@@ -6,6 +6,7 @@ The Powerline style prompt for oh-my-zsh
 Set Up
 ------
 
+### Manual / oh-my-zsh
 1. Clone the repository.
 
 	```
@@ -23,6 +24,17 @@ Set Up
     ```
     ZSH_THEME="solarized-powerline"
     ```
+
+### Antigen
+
+    antigen bundle KuoE0/oh-my-zsh-solarized-powerline-theme solarized-powerline
+
+Configuration
+-------------
+You can set following options in your .zshrc
+
+    export ZSH_POWERLINE_SHOW_IP=true     # Display current IP in the prompt
+    export ZSH_POWERLINE_SHOW_USER=true   # Display username in the prompt
 
 Test
 ----

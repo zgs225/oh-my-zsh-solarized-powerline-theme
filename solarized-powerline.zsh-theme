@@ -8,9 +8,7 @@
 
 
 # OS detection
-if [ -n "${OS+x}" ]; then
-	OS=$(uname)
-fi
+[[ -n "${OS}" ]] || OS=$(uname)
 
 # color
 BG_COLOR_BLACK=%{$bg[black]%}

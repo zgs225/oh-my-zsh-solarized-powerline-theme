@@ -1,7 +1,7 @@
 # You can set following options in your .zshrc
 #
-# export ZSH_POWERLINE_SHOW_IP=true     # Display current IP in the prompt
-# export ZSH_POWERLINE_SHOW_USER=true   # Display username in the prompt
+# ZSH_POWERLINE_SHOW_IP=true     # Display current IP in the prompt
+# ZSH_POWERLINE_SHOW_USER=true   # Display username in the prompt
 
 
 

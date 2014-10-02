@@ -1,3 +1,11 @@
+# You can set following options in your .zshrc
+#
+# export ZSH_POWERLINE_SHOW_IP=true     # Display current IP in the prompt
+# export ZSH_POWERLINE_SHOW_USER=true   # Display username in the prompt
+
+
+
+
 
 # OS detection
 if [ -n "${OS+x}" ]; then
@@ -77,13 +85,20 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
 ZSH_TIME=%T
 
+# option defaults
+[[ -n "$ZSH_POWERLINE_SHOW_IP" ]]    || ZSH_POWERLINE_SHOW_IP=true
+[[ -n "$ZSH_POWERLINE_SHOW_USER" ]]  || ZSH_POWERLINE_SHOW_USER=true
+
 # username
 
 PROMPT="
-$FG_COLOR_4$BG_COLOR_7 %n"
+$FG_COLOR_4$BG_COLOR_7"
+
+if [ $ZSH_POWERLINE_SHOW_USER = true ]; then
+    PROMPT=$PROMPT"%n"
+fi
 
 # hostname
-[[ -n "$ZSH_POWERLINE_SHOW_IP" ]] || ZSH_POWERLINE_SHOW_IP=true
 
 if [ $ZSH_POWERLINE_SHOW_IP = true ]; then
     if [ "$(echo $IP | grep 200)" = "" ]; then

@@ -27,7 +27,7 @@ Set Up
 
 ### Antigen
 
-    antigen bundle KuoE0/oh-my-zsh-solarized-powerline-theme solarized-powerline
+    antigen theme KuoE0/oh-my-zsh-solarized-powerline-theme solarized-powerline
 
 Configuration
 -------------

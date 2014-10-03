@@ -1,8 +1,14 @@
+# You can set following options in your .zshrc
+#
+# ZSH_POWERLINE_SHOW_IP=true     # Display current IP in the prompt
+# ZSH_POWERLINE_SHOW_USER=true   # Display username in the prompt
+
+
+
+
 
 # OS detection
-if [ -n "${OS+x}" ]; then
-	OS=$(uname)
-fi
+[[ -n "${OS}" ]] || OS=$(uname)
 
 # color
 BG_COLOR_BLACK=%{$bg[black]%}
@@ -77,23 +83,32 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
 ZSH_TIME=%T
 
+# option defaults
+[[ -n "$ZSH_POWERLINE_SHOW_IP" ]]    || ZSH_POWERLINE_SHOW_IP=true
+[[ -n "$ZSH_POWERLINE_SHOW_USER" ]]  || ZSH_POWERLINE_SHOW_USER=true
+
 # username
 
 PROMPT="
-$FG_COLOR_4$BG_COLOR_7 %n"
+$FG_COLOR_4$BG_COLOR_7"
 
-# hostname
-IP=`curl -si --max-time 2 http://ipecho.net/plain`
-
-if [ "$(echo $IP | grep 200)" = "" ]; then
-	# no network connection, use hostname
-	IP="%m"
-else
-	# replace dot by dash
-	IP=`echo -n $IP | tail -n 1 | sed "s/\./-/g"`
+if [ $ZSH_POWERLINE_SHOW_USER = true ]; then
+    PROMPT=$PROMPT"%n"
 fi
 
-PROMPT=$PROMPT"$FG_COLOR_2 at$FG_COLOR_13 $IP "
+# hostname
+
+if [ $ZSH_POWERLINE_SHOW_IP = true ]; then
+    if [ "$(echo $IP | grep 200)" = "" ]; then
+    IP=`curl -si --max-time 2 http://ipecho.net/plain`
+        # no network connection, use hostname
+        IP="%m"
+    else
+        # replace dot by dash
+        IP=`echo -n $IP | tail -n 1 | sed "s/\./-/g"`
+    fi
+    PROMPT=$PROMPT"$FG_COLOR_2 at$FG_COLOR_13 $IP "
+fi
 
 PROMPT=$PROMPT"$FG_COLOR_7$BG_COLOR_10"$''
 

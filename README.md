@@ -1,43 +1,122 @@
 Powerline theme for oh-my-zsh
 =============================
 
-The Powerline style prompt for oh-my-zsh
+The Powerline style prompt for oh-my-zsh.
 
-Set Up
-------
 
-### Manual / oh-my-zsh
+REQUIREMENTS
+------------
+
+- Vim Powerline patched font: See [Powerline for vim](https://github.com/Lokaltog/vim-powerline.git) for more info.
+- Z shell (zsh): See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
+
+PREVIEW
+-------
+
+![powerline prompt](https://raw.github.com/KuoE0/Powerline-oh-my-zsh-theme/master/preview.png)
+
+
+INSTALLATION
+------------
+
+**Manual / oh-my-zsh**
+
 1. Clone the repository.
 
 	```
 	$ git clone https://github.com/KuoE0/oh-my-zsh-solarized-powerline-theme.git
 	```
 
-2. Create un symlink of powerline.zsh-theme in .oh-my-zsh/themes/.
+2. Create a symbolic link of solarized-powerline.zsh-theme in .oh-my-zsh/themes/.
 	
 	```
 	$ ln -s $PWD/solarized-powerline.zsh-theme ~/.oh-my-zsh/themes
 	```
 
-2. Configure the theme in your **.zshrc** file :
+3. Configure the theme in your **.zshrc** file :
 
-    ```
-    ZSH_THEME="solarized-powerline"
-    ```
+	```
+	ZSH_THEME="solarized-powerline"
+	```
 
-### Antigen
+**Antigen**
 
-    antigen theme KuoE0/oh-my-zsh-solarized-powerline-theme solarized-powerline
+```
+antigen theme KuoE0/oh-my-zsh-solarized-powerline-theme solarized-powerline
+```
 
-Configuration
+See [Antigen](https://github.com/zsh-users/antigen) for more info.
+
+CONFIGURATION
 -------------
-You can set following options in your .zshrc
 
-    ZSH_POWERLINE_SHOW_IP=true     # Display current IP in the prompt
-    ZSH_POWERLINE_SHOW_USER=true   # Display username in the prompt
+You can set following options in your .zshrc.
 
-Test
-----
+`ZSH_POWERLINE_SHOW_USER`
+- **Display username.**
+- options:
+	- `true`
+	- `false`
+- default: `true`
+
+
+`ZSH_POWERLINE_SHOW_IP`
+- **Display IP address or host name.**
+- options:
+	- `true`
+	- `false`
+- default: `true`
+
+`ZSH_POWERLINE_SHOW_TIME`
+- **Display current time.**
+- options:
+	- `true`
+	- `false`
+- default: `true`
+
+`ZSH_POWERLINE_SINGLE_LINE`
+- **Use single line in prompt**
+- options:
+	- `true`
+	- `false`
+- default: `false`
+
+`ZSH_POWERLINE_SHOW_GIT_STATUS`
+- **Display git status of current repo.**
+- options:
+	- `true`
+	- `false`
+- default: `true`
+
+`ZSH_POWERLINE_SHOW_GIT_BRANCH`
+- **Display git branch of current repo.**
+- options:
+	- `true`
+	- `false`
+- default: `true`
+
+`ZSH_POWERLINE_SHOW_RETURN_CODE`
+- **Display return code.**
+- options:
+	- `true`
+	- `false`
+- default: `true`
+
+`ZSH_POWERLINE_SHOW_OS`
+- **Display symbol of current OS.**
+- options:
+	- `true`
+	- `false`
+- default: `true`
+
+`ZSH_POWERLINE_DIRECTORY_DEPTH`
+- **The the depth of parant directories.**
+- options:
+	- integer > 0
+- default: `2`
+
+DEVELOPMENT TEST
+----------------
 
 **Use up new setting:**
 	
@@ -49,24 +128,9 @@ Test
 	$ source restore.sh
 	$ source ~/.zshrc
 
-Requirements
+KNOWN ISSUES
 ------------
 
-* Vim Powerline patched font : See [Powerline for vim](https://github.com/Lokaltog/vim-powerline.git) for more info.
-* Z shell (zsh) : See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
+- In screen/tmux, the `%E` work not correctly. (doesn't highlight to the end of current line)
 
-### Monaco Patch
-
-[Monaco-Powerline.otf](https://gist.github.com/baopham/1838072)
-
-Preview
--------
-
-![powerline prompt](https://raw.github.com/KuoE0/Powerline-oh-my-zsh-theme/master/preview.png)
-
-
-Bugs
----------
-
-- In screen/tmux, the '%E' work not correctly. (won't hightlight to end)
 

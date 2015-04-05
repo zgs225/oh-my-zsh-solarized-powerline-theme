@@ -1,69 +1,51 @@
 # You can set following options in your .zshrc
-#
-# ZSH_POWERLINE_SHOW_IP=true     # Display current IP in the prompt
-# ZSH_POWERLINE_SHOW_USER=true   # Display username in the prompt
-
-
-
-
 
 # OS detection
 [[ -n "${OS}" ]] || OS=$(uname)
 
-# color
-BG_COLOR_BLACK=%{$bg[black]%}
-BG_COLOR_BLUE=%{$bg[blue]%}
-BG_COLOR_GREEN=%{$bg[green]%}
-BG_COLOR_CYAN=%{$bg[cyan]%}
 
+# background color
+BG_COLOR_BASE03=%K{8}
+BG_COLOR_BASE02=%K{0}
+BG_COLOR_BASE01=%K{10}
+BG_COLOR_BASE00=%K{11}
+BG_COLOR_BASE0=%K{12}
+BG_COLOR_BASE1=%K{14}
+BG_COLOR_BASE2=%K{7}
+BG_COLOR_BASE3=%K{15}
+BG_COLOR_YELLOW=%K{3}
+BG_COLOR_ORANGE=%K{1}
+BG_COLOR_RED=%K{9}
+BG_COLOR_MAGENTA=%K{5}
+BG_COLOR_VIOLET=%K{13}
+BG_COLOR_BLUE=%K{4}
+BG_COLOR_CYAN=%K{6}
+BG_COLOR_GREEN=%K{2}
 
-BG_COLOR_0=%K{0}
-BG_COLOR_1=%K{1}
-BG_COLOR_2=%K{2}
-BG_COLOR_3=%K{3}
-BG_COLOR_4=%K{4}
-BG_COLOR_5=%K{5}
-BG_COLOR_6=%K{6}
-BG_COLOR_7=%K{7}
-BG_COLOR_8=%K{8}
-BG_COLOR_9=%K{9}
-BG_COLOR_10=%K{10}
-BG_COLOR_11=%K{11}
-BG_COLOR_12=%K{12}
-BG_COLOR_13=%K{13}
-BG_COLOR_14=%K{14}
-BG_COLOR_15=%K{15}
+# foreground color
+FG_COLOR_BASE03=%F{8}
+FG_COLOR_BASE02=%F{0}
+FG_COLOR_BASE01=%F{10}
+FG_COLOR_BASE00=%F{11}
+FG_COLOR_BASE0=%F{12}
+FG_COLOR_BASE1=%F{14}
+FG_COLOR_BASE2=%F{7}
+FG_COLOR_BASE3=%F{15}
+FG_COLOR_YELLOW=%F{3}
+FG_COLOR_ORANGE=%F{1}
+FG_COLOR_RED=%F{9}
+FG_COLOR_MAGENTA=%F{5}
+FG_COLOR_VIOLET=%F{13}
+FG_COLOR_BLUE=%F{4}
+FG_COLOR_CYAN=%F{6}
+FG_COLOR_GREEN=%F{2}
 
-FG_COLOR_BLACK=%{$fg[black]%}
-FG_COLOR_RED=%{$fg[red]%}
-FG_COLOR_GREEN=%{$fg[green]%}
-FG_COLOR_BLUE=%{$fg[blue]%}
-FG_COLOR_YELLOW=%{$fg[yellow]%}
-FG_COLOR_CYAN=%{$fg[cyan]%}
-FG_COLOR_WHITE=%{$fg[white]%}
-
-FG_COLOR_0=%F{0}
-FG_COLOR_1=%F{1}
-FG_COLOR_2=%F{2}
-FG_COLOR_3=%F{3}
-FG_COLOR_4=%F{4}
-FG_COLOR_5=%F{5}
-FG_COLOR_6=%F{6}
-FG_COLOR_7=%F{7}
-FG_COLOR_8=%F{8}
-FG_COLOR_9=%F{9}
-FG_COLOR_10=%F{10}
-FG_COLOR_11=%F{11}
-FG_COLOR_12=%F{12}
-FG_COLOR_13=%F{13}
-FG_COLOR_14=%F{14}
-FG_COLOR_15=%F{15}
-
-FG_COLOR_228=%F{228}
 # reset color
-reset_color=%f%k%b
-RESET=%{$reset_color%}
-
+local RESET_COLOR=%f%k%b
+local RESET=%{$RESET_COLOR%}
+local RETURN_CODE="%(?..$FG_COLOR_RED%? ↵$RESET)"
+local ARROW_SYMBOL=''
+local TIME=%T
 
 GIT_DIRTY_COLOR=%F{196}
 GIT_CLEAN_COLOR=%F{118}
@@ -81,23 +63,20 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%F{220]➜%f"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
-ZSH_TIME=%T
-
 # option defaults
-[[ -n "$ZSH_POWERLINE_SHOW_IP" ]]    || ZSH_POWERLINE_SHOW_IP=true
-[[ -n "$ZSH_POWERLINE_SHOW_USER" ]]  || ZSH_POWERLINE_SHOW_USER=true
+[[ -n "$ZSH_POWERLINE_SHOW_USER" ]]           || ZSH_POWERLINE_SHOW_USER=true
+[[ -n "$ZSH_POWERLINE_SHOW_IP" ]]             || ZSH_POWERLINE_SHOW_IP=true
 
-# username
-
+# a new line before prompt
 PROMPT="
-$FG_COLOR_4$BG_COLOR_7"
-
+"
+# username
 if [ $ZSH_POWERLINE_SHOW_USER = true ]; then
-    PROMPT=$PROMPT"%n"
+	local USER="%n"
+    PROMPT=$PROMPT"${FG_COLOR_BLUE}${BG_COLOR_BASE3}${USER}"
 fi
 
 # hostname
-
 if [ $ZSH_POWERLINE_SHOW_IP = true ]; then
     if [ "$(echo $IP | grep 200)" = "" ]; then
     IP=`curl -si --max-time 2 http://ipecho.net/plain`
@@ -107,15 +86,15 @@ if [ $ZSH_POWERLINE_SHOW_IP = true ]; then
         # replace dot by dash
         IP=`echo -n $IP | tail -n 1 | sed "s/\./-/g"`
     fi
-    PROMPT=$PROMPT"$FG_COLOR_2 at$FG_COLOR_13 $IP "
+    PROMPT=$PROMPT" ${FG_COLOR_GREEN}at ${FG_COLOR_VIOLET}${IP} "
 fi
 
-PROMPT=$PROMPT"$FG_COLOR_7$BG_COLOR_10"$''
+PROMPT=$PROMPT"${FG_COLOR_BASE3}${BG_COLOR_BASE01}${ARROW_SYMBOL}"
 
 # datetime
-PROMPT=$PROMPT"$FG_COLOR_7$BG_COLOR_10 $ZSH_TIME "
+PROMPT=$PROMPT"${FG_COLOR_BASE3}${BG_COLOR_BASE01} ${ZSH_TIME} "
 
-PROMPT=$PROMPT"$FG_COLOR_10$BG_COLOR_0"$''
+PROMPT=$PROMPT"${FG_COLOR_BASE01}${BG_COLOR_BASE02}${ARROW_SYMBOL}"
 
 if [ $OS = "Darwin" ]; then
 	LOGO=""
@@ -124,14 +103,13 @@ else
 fi
 
 # current directory (%E hightline all line to end)
-PROMPT=$PROMPT"$FG_COLOR_15$BG_COLOR_0 $LOGO %2~"$'$(git_prompt_info)'" %E
+PROMPT=$PROMPT"${FG_COLOR_BASE3}${BG_COLOR_BASE02} ${LOGO} %2~"$'$(git_prompt_info)'" %E
   "
 
-PROMPT=$PROMPT"$FG_COLOR_0$BG_COLOR_8"$''
+PROMPT=$PROMPT"${FG_COLOR_BASE02}${BG_COLOR_BASE03}${ARROW_SYMBOL}"
 
-# resrt
-PROMPT=$PROMPT"$RESET "
+# reset
+PROMPT=$PROMPT"${RESET} "
 
-local return_code="%(?..$FG_COLOR_RED%? ↵$RESET)"
-RPROMPT="${return_code}"
+RPROMPT="${RETURN_CODE}"
 

@@ -45,7 +45,7 @@ local RESET_COLOR=%f%k%b
 local RESET=%{$RESET_COLOR%}
 local RETURN_CODE="%(?..$FG_COLOR_RED%? ↵$RESET)"
 local ARROW_SYMBOL=''
-local TIME=%T
+local ZSH_TIME=%D{%-H:%M}
 
 GIT_DIRTY_COLOR=%F{196}
 GIT_CLEAN_COLOR=%F{118}

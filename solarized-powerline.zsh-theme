@@ -45,7 +45,14 @@ local RESET_COLOR=%f%k%b
 local RESET=%{$RESET_COLOR%}
 local RETURN_CODE="%(?..$FG_COLOR_RED%? ↵$RESET)"
 local ARROW_SYMBOL=''
-local ZSH_TIME=%D{%-H:%M}
+local ZSH_TIME=%D{%H:%M}
+local PADDING=''
+
+if [ $OS = "Darwin" ]; then
+	local LOGO=""
+else
+	local LOGO="🐧"
+fi
 
 GIT_DIRTY_COLOR=%F{196}
 GIT_CLEAN_COLOR=%F{118}
@@ -68,7 +75,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 [[ -n "$ZSH_POWERLINE_SHOW_IP" ]]             || ZSH_POWERLINE_SHOW_IP=true
 [[ -n "$ZSH_POWERLINE_SHOW_OS" ]]             || ZSH_POWERLINE_SHOW_OS=true
 [[ -n "$ZSH_POWERLINE_SHOW_TIME" ]]           || ZSH_POWERLINE_SHOW_TIME=true
-[[ -n "$ZSH_POWERLINE_SINGLE_LINE" ]]         || ZSH_POWERLINE_SHOW_TIME=true
+[[ -n "$ZSH_POWERLINE_SINGLE_LINE" ]]         || ZSH_POWERLINE_SINGLE_LINE=false
 [[ -n "$ZSH_POWERLINE_SHOW_GIT_STATUS" ]]     || ZSH_POWERLINE_SHOW_GIT_STATUS=true
 [[ -n "$ZSH_POWERLINE_SHOW_GIT_BRANCH" ]]     || ZSH_POWERLINE_SHOW_GIT_BRANCH=true
 [[ -n "$ZSH_POWERLINE_SHOW_RETURN_CODE" ]]    || ZSH_POWERLINE_SHOW_RETURN_CODE=true
@@ -80,7 +87,8 @@ PROMPT="
 # username
 if [ $ZSH_POWERLINE_SHOW_USER = true ]; then
 	local USER="%n"
-    PROMPT=$PROMPT"${FG_COLOR_BLUE}${BG_COLOR_BASE3}${USER}"
+    PROMPT="${PROMPT}${FG_COLOR_BLUE}${BG_COLOR_BASE3}${PADDING}${USER}"
+	PADDING=' '
 fi
 
 # hostname
@@ -93,30 +101,53 @@ if [ $ZSH_POWERLINE_SHOW_IP = true ]; then
         # replace dot by dash
         IP=`echo -n $IP | tail -n 1 | sed "s/\./-/g"`
     fi
-    PROMPT=$PROMPT" ${FG_COLOR_GREEN}at ${FG_COLOR_VIOLET}${IP} "
+	if [ $ZSH_POWERLINE_SHOW_USER = true ]; then
+		PROMPT="${PROMPT}${FG_COLOR_GREEN}${BG_COLOR_BASE3} at"
+	fi
+    PROMPT="${PROMPT}${FG_COLOR_VIOLET}${BG_COLOR_BASE3}${PADDING}${IP}"
+	PADDING=' '
+fi
+# arrow symbol for username and ip/host
+if [ $ZSH_POWERLINE_SHOW_USER = true ] || [ $ZSH_POWERLINE_SHOW_IP = true ]; then
+	if [ $ZSH_POWERLINE_SHOW_TIME = true ]; then
+		PROMPT="${PROMPT} ${FG_COLOR_BASE3}${BG_COLOR_BASE01}${ARROW_SYMBOL}"
+	else
+		PROMPT="${PROMPT} ${FG_COLOR_BASE3}${BG_COLOR_BASE02}${ARROW_SYMBOL}"
+	fi
 fi
 
-PROMPT=$PROMPT"${FG_COLOR_BASE3}${BG_COLOR_BASE01}${ARROW_SYMBOL}"
-
 # datetime
-PROMPT=$PROMPT"${FG_COLOR_BASE3}${BG_COLOR_BASE01} ${ZSH_TIME} "
+if [ $ZSH_POWERLINE_SHOW_TIME = true ]; then
+	PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE01}${PADDING}${ZSH_TIME}"
+	PROMPT="${PROMPT} ${FG_COLOR_BASE01}${BG_COLOR_BASE02}${ARROW_SYMBOL}"
+	PADDING=' '
+fi
 
-PROMPT=$PROMPT"${FG_COLOR_BASE01}${BG_COLOR_BASE02}${ARROW_SYMBOL}"
-
-if [ $OS = "Darwin" ]; then
-	LOGO=""
-else
-	LOGO="🐧"
+# OS logo
+if [ $ZSH_POWERLINE_SHOW_OS = true ]; then
+	PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02}${PADDING}${LOGO}"
+	PADDING=' '
 fi
 
 # current directory (%E hightline all line to end)
-PROMPT=$PROMPT"${FG_COLOR_BASE3}${BG_COLOR_BASE02} ${LOGO} %2~"$'$(git_prompt_info)'" %E
-  "
+DIRECOTORY_DEPTH="%${ZSH_POWERLINE_DIRECTORY_DEPTH}~"
+PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02} ${DIRECOTORY_DEPTH}"
 
-PROMPT=$PROMPT"${FG_COLOR_BASE02}${BG_COLOR_BASE03}${ARROW_SYMBOL}"
+if [ $ZSH_POWERLINE_SINGLE_LINE = false ]; then
+	PROMPT="${PROMPT} %E
+  ${RESET}${FG_COLOR_BASE02}${ARROW_SYMBOL}"
+else
+	PROMPT="${PROMPT} ${RESET}${FG_COLOR_BASE02}${ARROW_SYMBOL}"
+fi
+	# "%2~"$'$(git_prompt_info)'" %E
+  # "
+
+# PROMPT=$PROMPT"${FG_COLOR_BASE02}${BG_COLOR_BASE03}${ARROW_SYMBOL}"
 
 # reset
-PROMPT=$PROMPT"${RESET} "
+PROMPT="$PROMPT ${RESET} "
 
-RPROMPT="${RETURN_CODE}"
+if [ $ZSH_POWERLINE_SHOW_RETURN_CODE = true ]; then
+	RPROMPT="${RETURN_CODE}"
+fi
 

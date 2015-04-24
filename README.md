@@ -88,6 +88,13 @@ You can set following options in your .zshrc.
 	- `false`
 - default: `true`
 
+`ZSH_POWERLINE_SHOW_GIT_BRAHCH_ONLY`
+- **Display branch name of current git repo. The priotity of this option is higher than `ZSH_POWERLINE_SHOW_GIT_STATUS`!**
+- options:
+	- `true`
+	- `false`
+- default: `false`
+
 `ZSH_POWERLINE_SHOW_RETURN_CODE`
 - **Display return code.**
 - options:
@@ -107,19 +114,6 @@ You can set following options in your .zshrc.
 - options:
 	- integer > 0
 - default: `2`
-
-DEVELOPMENT TEST
-----------------
-
-**Use up new setting:**
-	
-	$ source test.sh
-	$ source ~/.zshrc
-
-**Restore old setting:**
-	
-	$ source restore.sh
-	$ source ~/.zshrc
 
 KNOWN ISSUES
 ------------

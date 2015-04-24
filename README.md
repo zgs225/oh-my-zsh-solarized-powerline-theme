@@ -82,14 +82,7 @@ You can set following options in your .zshrc.
 - default: `false`
 
 `ZSH_POWERLINE_SHOW_GIT_STATUS`
-- **Display git status of current repo.**
-- options:
-	- `true`
-	- `false`
-- default: `true`
-
-`ZSH_POWERLINE_SHOW_GIT_BRANCH`
-- **Display git branch of current repo.**
+- **Display git status of current repo. For a large git repo, the prompt will be very slow!**
 - options:
 	- `true`
 	- `false`

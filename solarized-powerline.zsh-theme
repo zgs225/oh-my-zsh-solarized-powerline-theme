@@ -4,6 +4,7 @@
 [[ -n "${OS}" ]] || OS=$(uname)
 
 
+
 # background color
 BG_COLOR_BASE03=%K{8}
 BG_COLOR_BASE02=%K{0}
@@ -71,14 +72,15 @@ ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
 # option defaults
-[[ -n "$ZSH_POWERLINE_SHOW_USER" ]]           || ZSH_POWERLINE_SHOW_USER=true
-[[ -n "$ZSH_POWERLINE_SHOW_IP" ]]             || ZSH_POWERLINE_SHOW_IP=true
-[[ -n "$ZSH_POWERLINE_SHOW_OS" ]]             || ZSH_POWERLINE_SHOW_OS=true
-[[ -n "$ZSH_POWERLINE_SHOW_TIME" ]]           || ZSH_POWERLINE_SHOW_TIME=true
-[[ -n "$ZSH_POWERLINE_SINGLE_LINE" ]]         || ZSH_POWERLINE_SINGLE_LINE=false
-[[ -n "$ZSH_POWERLINE_SHOW_GIT_STATUS" ]]     || ZSH_POWERLINE_SHOW_GIT_STATUS=true
-[[ -n "$ZSH_POWERLINE_SHOW_RETURN_CODE" ]]    || ZSH_POWERLINE_SHOW_RETURN_CODE=true
-[[ -n "$ZSH_POWERLINE_DIRECTORY_DEPTH" ]]     || ZSH_POWERLINE_DIRECTORY_DEPTH=2
+[[ -n "$ZSH_POWERLINE_SHOW_USER" ]]             || ZSH_POWERLINE_SHOW_USER=true
+[[ -n "$ZSH_POWERLINE_SHOW_IP" ]]               || ZSH_POWERLINE_SHOW_IP=true
+[[ -n "$ZSH_POWERLINE_SHOW_OS" ]]               || ZSH_POWERLINE_SHOW_OS=true
+[[ -n "$ZSH_POWERLINE_SHOW_TIME" ]]             || ZSH_POWERLINE_SHOW_TIME=true
+[[ -n "$ZSH_POWERLINE_SINGLE_LINE" ]]           || ZSH_POWERLINE_SINGLE_LINE=false
+[[ -n "$ZSH_POWERLINE_SHOW_GIT_STATUS" ]]       || ZSH_POWERLINE_SHOW_GIT_STATUS=true
+[[ -n "$ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY" ]]  || ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY=false
+[[ -n "$ZSH_POWERLINE_SHOW_RETURN_CODE" ]]      || ZSH_POWERLINE_SHOW_RETURN_CODE=true
+[[ -n "$ZSH_POWERLINE_DIRECTORY_DEPTH" ]]       || ZSH_POWERLINE_DIRECTORY_DEPTH=2
 
 # a new line before prompt
 PROMPT="
@@ -133,8 +135,15 @@ DIRECOTORY_DEPTH="%${ZSH_POWERLINE_DIRECTORY_DEPTH}~"
 PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02} ${DIRECOTORY_DEPTH}"
 
 # show git status
-if [ $ZSH_POWERLINE_SHOW_GIT_STATUS = true ]; then
+if [ $ZSH_POWERLINE_SHOW_GIT_STATUS = true ] && [ $ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY = false ]; then
 	PROMPT="${PROMPT}"'$(git_prompt_info)'
+elif [ $ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY = true ]; then
+	# get git branch function
+	git_branch() {
+		BRANCH=$(git branch | grep '*' | cut -d' ' -f2)
+		echo ${ZSH_THEME_GIT_PROMPT_PREFIX}${BRANCH}
+	}
+	PROMPT="${PROMPT}"'$(git_branch)'
 fi
 
 # single line or double lines

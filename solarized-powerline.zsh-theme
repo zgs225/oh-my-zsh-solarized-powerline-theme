@@ -135,15 +135,17 @@ DIRECOTORY_DEPTH="%${ZSH_POWERLINE_DIRECTORY_DEPTH}~"
 PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02} ${DIRECOTORY_DEPTH}"
 
 # show git status
-if [ $ZSH_POWERLINE_SHOW_GIT_STATUS = true ] && [ $ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY = false ]; then
-	PROMPT="${PROMPT}"'$(git_prompt_info)'
-elif [ $ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY = true ]; then
+if [ $ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY = true ]; then
 	# get git branch function
 	git_branch() {
-		BRANCH=$(git branch | grep '*' | cut -d' ' -f2)
-		echo ${ZSH_THEME_GIT_PROMPT_PREFIX}${BRANCH}
+		if [ -d "$PWD/.git" ]; then
+			BRANCH=$(git branch | grep '*' | cut -d' ' -f2)
+			echo ${ZSH_THEME_GIT_PROMPT_PREFIX}${BRANCH}
+		fi
 	}
 	PROMPT="${PROMPT}"'$(git_branch)'
+elif [ $ZSH_POWERLINE_SHOW_GIT_STATUS = true ]; then
+	PROMPT="${PROMPT}"'$(git_prompt_info)'
 fi
 
 # single line or double lines

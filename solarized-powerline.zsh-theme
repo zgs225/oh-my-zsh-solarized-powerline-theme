@@ -139,7 +139,7 @@ if [ $ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY = true ]; then
 	# get git branch function
 	git_branch() {
 		if [ -d "$PWD/.git" ]; then
-			BRANCH=$(git branch | grep '*' | cut -d' ' -f2)
+			BRANCH=$(git branch | grep '*' | cut -d' ' -f2-)
 			echo ${ZSH_THEME_GIT_PROMPT_PREFIX}${BRANCH}
 		fi
 	}

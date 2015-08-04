@@ -3,8 +3,6 @@
 # OS detection
 [[ -n "${OS}" ]] || OS=$(uname)
 
-
-
 # background color
 BG_COLOR_BASE03=%K{8}
 BG_COLOR_BASE02=%K{0}
@@ -138,7 +136,8 @@ PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02} ${DIRECOTORY_DEPTH}"
 if [ $ZSH_POWERLINE_SHOW_GIT_BRANCH_ONLY = true ]; then
 	# get git branch function
 	git_branch() {
-		if [ -d "$PWD/.git" ]; then
+		git rev-parse --git-dir > /dev/null 2>&1
+		if [ "$?" = "0" ]; then
 			BRANCH=$(git branch | grep '*' | cut -d' ' -f2-)
 			echo ${ZSH_THEME_GIT_PROMPT_PREFIX}${BRANCH}
 		fi

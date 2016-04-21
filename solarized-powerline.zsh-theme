@@ -156,9 +156,8 @@ else
 fi
 
 # reset
-PROMPT="$PROMPT ${RESET} "
+PROMPT="$PROMPT ${RESET}"
 
 if [ $ZSH_POWERLINE_SHOW_RETURN_CODE = true ]; then
 	RPROMPT="${RETURN_CODE}"
 fi
-

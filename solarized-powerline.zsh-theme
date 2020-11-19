@@ -129,7 +129,7 @@ if [ $ZSH_POWERLINE_SHOW_OS = true ]; then
 fi
 
 # Proxy flag
-if [ -n $http_proxy ]; then
+if [ $http_proxy ]; then
   local PROXY='✈'
 	PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02}${PADDING}${PROXY}"
 	PADDING=' '

@@ -130,7 +130,7 @@ fi
 
 function _proxy_flag() {
   if [ $http_proxy ]; then
-    echo ' ✈ '
+    echo "${FG_COLOR_BASE3}${BG_COLOR_BASE02}✈"
   fi
 }
 

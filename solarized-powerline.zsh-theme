@@ -128,6 +128,13 @@ if [ $ZSH_POWERLINE_SHOW_OS = true ]; then
 	PADDING=' '
 fi
 
+# Proxy flag
+if [ -n $http_proxy ]; then
+  local PROXY='✈'
+	PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02}${PADDING}${PROXY}"
+	PADDING=' '
+fi
+
 # current directory (%E hightline all line to end)
 DIRECOTORY_DEPTH="%${ZSH_POWERLINE_DIRECTORY_DEPTH}~"
 PROMPT="${PROMPT}${FG_COLOR_BASE3}${BG_COLOR_BASE02} ${DIRECOTORY_DEPTH}"
